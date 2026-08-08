@@ -17,10 +17,10 @@ class Pet:
         self.energia = energia        # 0 = exausto | 100 = com pique
         self.vivo = vivo
         # TODO (bônus): crie mais atributos aqui! Ex:
-        #   self.saude = 100
-        #   self.higiene = 50
-        #   self.rodadas = 0
-        #   self.pontos = 0
+        self.saude = 100
+        self.higiene = 50
+        self.rodadas = 0
+        self.pontos = 0
 
     # ==================== AÇÕES ====================
 
@@ -31,33 +31,48 @@ class Pet:
 
     def brincar(self):
         # TODO: brincar deve AUMENTAR a felicidade e GASTAR energia.
-
+        self.felicidade = max(100, self.felicidade + 20)
+        self.energia = max(0, self.energia - 10)
+        self.higiene = max(0, self.higiene - 20)
+        print(f"Voce brincou com {self.nome}. Uhull!! ☆*: .｡. o(≧▽≦)o .｡.:*☆")
         pass
 
     def dormir(self):
         # TODO: dormir deve RECUPERAR energia.
-
+        self.energia = max(100, self.energia + 25)
+        print(f"{self.nome} teve um descanso e recuperou suas energias! 🤗")
         pass
 
     # --- Ações bônus: o menu já chama estas, agora é implementar! ---
 
     def dar_banho(self):
         # TODO (bônus): crie um atributo self.higiene no __init__ e aumente aqui.
-        print("🛁 (Dar banho ainda não foi implementado.)")
+        self.higiene = max(100, self.higiene + 50)
+        print(f"🛁 {self.nome} Tomou um banho e esta rejuvenecido!")
 
     def dar_remedio(self):
         # TODO (bônus): crie um atributo self.saude no __init__ e aumente aqui.
-        print("💊 (Dar remédio ainda não foi implementado.)")
+        self.saude = max(100, self.saude + 25)
+        print(f"💊 {self.nome} foi medicado e está mais saudável!")
 
     # ==================== PASSAGEM DO TEMPO ====================
 
     def passar_tempo(self):
         """Chamado depois de cada ação. O tempo não perdoa: tudo piora sozinho!"""
         # TODO: faça a fome SUBIR e a felicidade/energia CAÍREM um pouco.
+        self.fome = max(100, self.fome + 15)
+        self.felicidade = max(0, self.felicidade - 15)
+        self.energia = max(0, self.energia -15)
         pass
 
     def verificar_saude(self):
         # TODO: se a fome chegar a 100 OU a felicidade chegar a 0,
+        if self.fome == 100:
+            print(f"😿 {self.nome} está com muita fome! hora de alimenta-lo🧀")
+        elif self.felicidade == 0:
+            print(f"😢💔 {self.nome} está muito triste e solitario, brinque com ele!")
+
+        print(f"Saude do bichinho {self.saude}")
         pass
 
     # ==================== VISUAL (já vem pronto o básico) ====================
@@ -70,11 +85,20 @@ class Pet:
     def status(self):
         """Mostra a situação do bichinho. Você pode deixar mais bonito!"""
         print("\n" + "=" * 34)
-        print(f"  {self.nome}")
+        if 0 >= self.felicidade >= 25:
+            print(f"😿💔  {self.nome}")
+        elif 26 >= self.felicidade >= 50:
+            print(f"😮‍💨🐾 {self.nome}")
+        elif 51 >= self.felicidade >= 75:
+            print(f"😊💕 {self.nome}")
+        elif 76 >= self.felicidade >= 100:
+            print(f"🥰❤️ {self.nome}")
         print("-" * 34)
         print(f"  Fome......: {self.barra(self.fome)}")
         print(f"  Felicidade: {self.barra(self.felicidade)}")
         print(f"  Energia...: {self.barra(self.energia)}")
+        print(f"  Saude.....: {self.barra(self.saude)}")
+        print(f"  Higiene...: {self.barra(self.higiene)}")
         print("=" * 34)
         # TODO (bônus): mostre um rostinho que muda com o humor,
         #               e as barras dos novos atributos (saúde, higiene...).
@@ -84,4 +108,13 @@ class Pet:
     def para_dict(self):
         """Transforma o bichinho num dicionário, pra virar JSON depois."""
         # TODO (bônus): devolva um dicionário com os atributos do bichinho.
+        return {
+            "nome" : self.nome, 
+            "fome" : self.fome,
+            "felicidade" : self.felicidade, 
+            "energia" : self.energia, 
+            "saude" : self.saude,
+            "higiene" : self.higiene,
+            "vivo" : self.vivo
+        }
         pass

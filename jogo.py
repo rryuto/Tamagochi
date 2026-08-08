@@ -11,9 +11,18 @@ import armazenamento
 
 def ler_opcao():
     """Lê a opção do menu digitada pelo usuário."""
-    # Sua tarefa: proteger com try/except. Se der erro, avise e devolva None.
-  
-    return int(input("Escolha uma opção: "))   
+    try:
+        opcao = int(input("Escolha uma opção: "))
+
+        if 0 <= opcao <= 9:
+            return opcao
+
+        print("Erro: a opção deve estar entre 0 e 9.")
+        return None
+
+    except ValueError:
+        print("Erro: digite um número inteiro.")
+        return None
 
 def menu():
     print("\nO que você quer fazer?")
@@ -27,8 +36,45 @@ def menu():
 def main():
     print("🐣 Bem-vindo ao Bichinho Virtual! 🐣")
 
-    
+def adotar():
+    print("Vamos adotar um companheiro! 🐵")
+    print("Como devemos chamar seu companheiro?")
+    nome = input()
+    print("Você adotou seu companheiro!")
+    return Pet(nome)
+
 
 
 if __name__ == "__main__":
+
+    lista_tamagochi = armazenamento.carregar()
+    
+    print(lista_tamagochi)
     main()
+    if lista_tamagochi == None:
+        novo_pet = adotar()
+        lista_tamagochi.append(novo_pet)    
+
+    while True:
+        menu()
+        if ler_opcao() == 1:
+            pet.alimentar()
+        elif ler_opcao() == 2:
+            pet.brincar()
+        elif ler_opcao() == 3:
+            pet.dormir()
+        elif ler_opcao() == 4:
+            pet.status
+        elif ler_opcao() == 5:
+            pet.dar_remedio
+        elif ler_opcao() == 6:
+            pet.dar_banho
+        elif ler_opcao() == 7:
+            pet.    
+        
+
+        
+
+            
+
+            
