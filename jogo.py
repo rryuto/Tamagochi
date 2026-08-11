@@ -43,36 +43,72 @@ def adotar():
     print("Você adotou seu companheiro!")
     return Pet(nome)
 
-
-
 if __name__ == "__main__":
 
-    lista_tamagochi = armazenamento.carregar()
-    
-    print(lista_tamagochi)
-    main()
-    if lista_tamagochi == None:
+    dados = armazenamento.carregar()
+
+    if dados is None or len(dados) == 0:
         novo_pet = adotar()
-        lista_tamagochi.append(novo_pet)    
+        lista_tamagochi = [novo_pet]
+    else:
+        lista_tamagochi = armazenamento.pet_de_dict(dados)
 
-    while True:
+    cont_pet = 0
+    print(f"🐵{lista_tamagochi[cont_pet].nome} foi invocado!")
+    main()
+    while lista_tamagochi[cont_pet].vivo:
         menu()
-        if ler_opcao() == 1:
-            pet.alimentar()
-        elif ler_opcao() == 2:
-            pet.brincar()
-        elif ler_opcao() == 3:
-            pet.dormir()
-        elif ler_opcao() == 4:
-            pet.status
-        elif ler_opcao() == 5:
-            pet.dar_remedio
-        elif ler_opcao() == 6:
-            pet.dar_banho
-        elif ler_opcao() == 7:
-            pet.    
-        
+        opcao = ler_opcao()
+        if opcao == 1:
+            lista_tamagochi[cont_pet].alimentar()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 2:
+            lista_tamagochi[cont_pet].brincar()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 3:
+            lista_tamagochi[cont_pet].dormir()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 4:
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 5:
+            lista_tamagochi[cont_pet].dar_remedio()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 6:
+            lista_tamagochi[cont_pet].dar_banho()
+            lista_tamagochi[cont_pet].passar_tempo()
+            lista_tamagochi[cont_pet].status()
+            lista_tamagochi[cont_pet].verificar_saude()
+        elif opcao == 7:
+            print("\n")
+            print("😶‍🌫️")
+            if cont_pet < len(lista_tamagochi) - 1:
+                cont_pet += 1
+                lista_tamagochi[cont_pet]
+                print(f"Um {lista_tamagochi[cont_pet].nome} selvagem aparece!")
+            else:
+                cont_pet = 0
+                lista_tamagochi[cont_pet]
+                print(f"Um {lista_tamagochi[cont_pet].nome} selvagem aparece!")
+        elif opcao == 8:
+            novo_pet = adotar()
+            lista_tamagochi.append(novo_pet)
 
+        elif opcao == 9:
+            armazenamento.salvar(lista_tamagochi)
+        elif opcao == 0:
+            print("Até a proxima!")
+            break
         
 
             

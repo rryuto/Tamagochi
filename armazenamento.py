@@ -14,14 +14,21 @@ ARQUIVO = "save_bichinhos.json"
 def pet_de_dict(dados):
     """Recria um Pet a partir de um dicionário (o contrário de para_dict)."""
     # TODO (bônus): use os dados pra criar e devolver um Pet.
-    pet = p(**dados)
-    return pet
+    if dados is None:
+        return None
+    lista_pets = []
+    for d in dados:
+        lista_pets.append(p(**d))
+    return lista_pets
     pass
 
 
 def salvar(pets):
     # TODO (bônus): transforme cada bichinho em dicionário (para_dict())
-    pet_save = p.para_dict(pets)
+    pet_save = []
+    for i in range(0, len(pets)):
+        pet_save.append(pets[i].para_dict())
+
     with open(ARQUIVO, "w", encoding="utf=8") as f:
         json.dump(pet_save, f, ensure_ascii=False, indent=4)
     print(f"💾")

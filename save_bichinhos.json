@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "nome": "pikachu",
+        "fome": 220,
+        "felicidade": 120,
+        "energia": 0,
+        "saude": 0,
+        "higiene": 0,
+        "vivo": true
+    },
+    {
+        "nome": "blastoise",
+        "fome": 175,
+        "felicidade": 25,
+        "energia": 40,
+        "saude": 70,
+        "higiene": 100,
+        "vivo": true
+    },
+    {
+        "nome": "1",
+        "fome": 50,
+        "felicidade": 50,
+        "energia": 50,
+        "saude": 100,
+        "higiene": 50,
+        "vivo": true
+    }
+]
