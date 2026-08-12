@@ -74,9 +74,7 @@ if __name__ == "__main__":
             lista_tamagochi[cont_pet].passar_tempo()
             lista_tamagochi[cont_pet].status()
             lista_tamagochi[cont_pet].verificar_saude()
-        elif opcao == 4:
-            lista_tamagochi[cont_pet].status()
-            lista_tamagochi[cont_pet].passar_tempo()
+        elif opcao == 4:    
             lista_tamagochi[cont_pet].status()
             lista_tamagochi[cont_pet].verificar_saude()
         elif opcao == 5:

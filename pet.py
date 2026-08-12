@@ -26,7 +26,7 @@ class Pet:
 
     def alimentar(self):
         """✅ EXEMPLO PRONTO — use como modelo pros outros métodos."""
-        self.fome = (self.fome - 30)   # max(0, ...) não deixa passar de 0
+        self.fome = max(0, self.fome - 30)   # max(0, ...) não deixa passar de 0
         self.rodadas += 1
         self.pontos += 10
         self.saude = max(0, self.saude - 10)
@@ -34,7 +34,7 @@ class Pet:
 
     def brincar(self):
         # TODO: brincar deve AUMENTAR a felicidade e GASTAR energia.
-        self.felicidade = max(100, self.felicidade + 20)
+        self.felicidade = min(100, self.felicidade + 20)
         self.energia = max(0, self.energia - 10)
         self.higiene = max(0, self.higiene - 20)
         self.saude = max(0, self.saude - 10)
@@ -45,7 +45,7 @@ class Pet:
 
     def dormir(self):
         # TODO: dormir deve RECUPERAR energia.
-        self.energia = max(100, self.energia + 25)
+        self.energia = min(100, self.energia + 25)
         self.saude = max(0, self.saude - 10)
         self.rodadas += 1
         self.pontos += 10
@@ -56,7 +56,7 @@ class Pet:
 
     def dar_banho(self):
         # TODO (bônus): crie um atributo self.higiene no __init__ e aumente aqui.
-        self.higiene = max(100, self.higiene + 50)
+        self.higiene = min(100, self.higiene + 50)
         self.saude = max(0, self.saude - 10)
         self.rodadas += 1
         self.pontos += 10
@@ -64,7 +64,7 @@ class Pet:
 
     def dar_remedio(self):
         # TODO (bônus): crie um atributo self.saude no __init__ e aumente aqui.
-        self.saude = max(100, self.saude + 25)
+        self.saude = min(100, self.saude + 25)
         self.rodadas += 1
         self.pontos += 10
         print(f"💊 {self.nome} foi medicado e está mais saudável!")
@@ -74,7 +74,7 @@ class Pet:
     def passar_tempo(self):
         """Chamado depois de cada ação. O tempo não perdoa: tudo piora sozinho!"""
         # TODO: faça a fome SUBIR e a felicidade/energia CAÍREM um pouco.
-        self.fome = max(0, self.fome + 15)
+        self.fome = min(100, self.fome + 15)
         self.felicidade = max(0, self.felicidade - 15)
         self.energia = max(0, self.energia -15)
         self.saude = max(0, self.saude - 10)
@@ -103,13 +103,13 @@ class Pet:
     def status(self):
         """Mostra a situação do bichinho. Você pode deixar mais bonito!"""
         print("\n" + "=" * 34)
-        if 0 >= self.felicidade >= 25:
+        if 0 <= self.felicidade <= 25:
             print(f"😿💔  {self.nome}")
-        elif 26 >= self.felicidade >= 50:
+        elif 26 <= self.felicidade <= 50:
             print(f"😮‍💨🐾 {self.nome}")
-        elif 51 >= self.felicidade >= 75:
+        elif 51 <= self.felicidade <= 75:
             print(f"😊💕 {self.nome}")
-        elif 76 >= self.felicidade >= 100:
+        elif 76 <= self.felicidade <= 100:
             print(f"🥰❤️ {self.nome}")
         print("-" * 34)
         print(f"  Fome......: {self.barra(self.fome)}")
