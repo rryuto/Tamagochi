@@ -97,7 +97,14 @@ class Pet:
 
     def barra(self, valor):
         """Desenha uma barrinha de 0 a 100. (pode melhorar depois!)"""
-        cheios = valor // 10
+        # 🔧 [CLINE] try/except adicionado: protege contra valores não numéricos
+        #            que chegariam aqui e quebrariam o jogo
+        try:
+            cheios = valor // 10
+        except TypeError:
+            print("Valor inválido na barra! Usando 0.")
+            valor = 0
+            cheios = 0
         return "#" * cheios + "-" * (10 - cheios) + f" {valor}"
 
     def status(self):
